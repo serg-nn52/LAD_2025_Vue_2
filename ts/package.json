@@ -1,0 +1,21 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "dev": "tsx watch ./src/index.ts",
+    "build:watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "type": "module"
+}
