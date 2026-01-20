@@ -1,7 +1,6 @@
 <template>
-  <div class="root">
-    <header class="header">Header</header>
-    <section class="content">
+  <MainLayout>
+    <section class="counter">
       <h1 :style="{ color: isMainPageTitleGreen ? 'green' : 'black' }">Main Page</h1>
       <ClickCounter
         @decrement="decrementHandler"
@@ -9,17 +8,47 @@
         :title="$options.title"
       />
     </section>
-    <footer class="footer">Footer {{ new Date().getFullYear() }}</footer>
-  </div>
+    <section class="users">
+      <h2>Пользователи</h2>
+      <div class="users-block">
+        <UserCard
+          :user="{
+            name: 'Sergey',
+            age: 40,
+            role: 'Teacher',
+            img: 'https://yt3.googleusercontent.com/ytc/AIdro_nDHzCtSxBD4VWB7aHFW4BiYQU9Kq3j-DXyl0hAVubSqQ=s900-c-k-c0x00ffffff-no-rj',
+          }"
+        >
+          <template #append>
+            <p>*Признан иноагентом</p>
+          </template>
+        </UserCard>
+        <UserCard
+          :user="{
+            name: 'Ilya',
+            age: 30,
+            role: 'Student',
+            img: 'https://yt3.googleusercontent.com/ytc/AIdro_la1tX4P9r22r3voyWGofqdcGcU5MBoM8h5Ken296cjBbU=s900-c-k-c0x00ffffff-no-rj',
+          }"
+        >
+          <template #prepend>
+            <h2>Title prepend</h2>
+          </template>
+        </UserCard>
+      </div>
+    </section>
+  </MainLayout>
 </template>
 
 <script lang="ts">
 import ClickCounter from '@/components/ClickCounter.vue'
+import UserCard from '@/components/UserCard.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'TestComponent',
-  components: { ClickCounter },
+  name: 'MainPage',
+  components: { ClickCounter, UserCard, MainLayout },
   data() {
     return {
       isMainPageTitleGreen: false,
@@ -58,5 +87,11 @@ export default defineComponent({
 .content {
   flex-grow: 1;
   padding: 10px;
+}
+.users-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
 }
 </style>
