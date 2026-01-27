@@ -3,6 +3,7 @@
     <section class="counter">
       <h1 :style="{ color: isMainPageTitleGreen ? 'green' : 'black' }">Main Page</h1>
       <ClickCounter
+        v-if="count > -3"
         @decrement="decrementHandler"
         v-bind="$options.propsObj"
         :title="$options.title"
@@ -41,10 +42,10 @@
 </template>
 
 <script lang="ts">
-import ClickCounter from '@/components/ClickCounter.vue'
-import UserCard from '@/components/UserCard.vue'
-import MainLayout from '@/layouts/MainLayout.vue'
-import { defineComponent } from 'vue'
+import ClickCounter from '@/components/ClickCounter.vue';
+import UserCard from '@/components/UserCard.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'MainPage',
@@ -52,7 +53,8 @@ export default defineComponent({
   data() {
     return {
       isMainPageTitleGreen: false,
-    }
+      count: 0,
+    };
   },
   title: 'Our counter title',
   propsObj: {
@@ -61,11 +63,12 @@ export default defineComponent({
   },
   methods: {
     decrementHandler(event: number) {
-      this.isMainPageTitleGreen = event < -5 ? true : false
-      console.log('decrement-handler', event)
+      this.isMainPageTitleGreen = event < -5 ? true : false;
+      this.count = event;
+      console.log('decrement-handler', event);
     },
   },
-})
+});
 </script>
 
 <style scoped>

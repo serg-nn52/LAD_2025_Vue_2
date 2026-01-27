@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   data() {
     return {
       count: 0,
-    }
+    };
   },
   props: {
     title: {
@@ -27,42 +27,54 @@ export default defineComponent({
     },
   },
   emits: ['decrement'],
-  mounted() {
-    console.log(this.$attrs)
-  },
   computed: {
     doubleCount() {
-      return 2 * this.count
+      return 2 * this.count;
     },
     counterTitleColor() {
-      return { color: this.count > 5 ? 'red' : 'black' }
+      return { color: this.count > 5 ? 'red' : 'black' };
     },
   },
   methods: {
     showDecrement() {
-      console.log('decrement')
+      console.log('decrement');
     },
     decrement() {
       // this.showDecrement()
-      this.count--
-      this.$emit('decrement', this.count)
+      this.count--;
+      this.$emit('decrement', this.count);
     },
     reset() {
-      this.count = 0
+      this.count = 0;
     },
   },
   watch: {
     count: {
       handler(newValue, oldValue) {
-        console.log('newValue', newValue)
-        console.log('oldValue', oldValue)
+        console.log('newValue', newValue);
+        console.log('oldValue', oldValue);
         // if (newValue === 0) alert('Значение равно 0!')
       },
       immediate: true,
       deep: true,
     },
   },
-})
+  created() {
+    console.log('created'); //можем делать запросы
+  },
+  beforeMount() {
+    console.log('before mount');
+  },
+  mounted() {
+    console.log('mounted'); //можем работать с DOM
+  },
+  updated() {
+    console.log('updated'); //изменилось состояние
+  },
+  beforeUnmount() {
+    console.log('beforeUnmount'); //отписки от слушателей событий, уничтожение таймеров и интервалов
+  },
+});
 </script>
 
 <style scoped>
