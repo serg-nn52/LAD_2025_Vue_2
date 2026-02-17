@@ -5,12 +5,13 @@
   <div>Country: {{ user.country }}</div>
   <button @click="changeUser">Change user</button>
   <button @click="user.age++">Change user age</button>
-  <div v-if="user.age < 18">Вы слишком молоды!</div>
+  <div v-if="user.age < 18">{{ truncateString('Вы слишком молоды!', 10) }}</div>
   <div v-else-if="user.age < 60">Вы в самом расцвете сил!</div>
   <div v-else>Вам нужно больше отдыхать!</div>
 </template>
 
 <script setup lang="ts">
+import { truncateString } from '@/utils/truncateString';
 import { reactive, ref, watch } from 'vue';
 
 interface IUser {

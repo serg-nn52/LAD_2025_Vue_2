@@ -1,7 +1,7 @@
 <template>
   <hr :style="{ marginTop: '10px' }" />
   <form @submit.prevent="sendForm">
-    <input @input="inputName" type="text" placeholder="name" :value="name" />
+    <input ref="inputOther" @input="inputName" type="text" placeholder="name" :value="name" />
     <input v-model="age" type="text" placeholder="age" />
     <button :disabled="isSendFormButtonDisable">Send user form</button>
   </form>
@@ -15,6 +15,8 @@ import { onBeforeUnmount, onMounted, onUpdated, ref, watch } from 'vue';
 const name = ref('Ivan');
 const age = ref('18');
 const isSendFormButtonDisable = ref(false);
+
+const inputOther = ref<HTMLInputElement | null>(null);
 
 const inputName = (event: InputEvent) => {
   name.value = (event.target as HTMLInputElement).value;
@@ -37,7 +39,9 @@ watch(name, (nameValue) => {
 console.log('created');
 
 onMounted(() => {
-  console.log('mounted');
+  if (!inputOther.value) return;
+  console.log('input', inputOther.value.value);
+  inputOther.value.focus();
 });
 
 onUpdated(() => {
