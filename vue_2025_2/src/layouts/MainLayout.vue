@@ -1,6 +1,11 @@
 <template>
   <div class="root">
     <header class="header">Header</header>
+    <nav class="nav-links">
+      <router-link active-class="active-link" class="nav-link" :to="{name: 'home'}">Main</router-link>
+      <router-link active-class="active-link" class="nav-link" :to="{name: 'options'}">Options</router-link>
+      <router-link active-class="active-link" class="nav-link" :to="{name: 'posts'}">Posts</router-link>
+    </nav>
     <div class="content">
       <slot />
     </div>
@@ -22,6 +27,8 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+
 }
 .header,
 .footer {
@@ -35,5 +42,19 @@ export default defineComponent({
 .content {
   flex-grow: 1;
   padding: 10px;
+}
+  .nav-links {
+  background-color: green;
+  font-size: 28px;
+  color: black;
+  display: flex;
+  gap: 15px;
+}
+.nav-link {
+  color: black;
+  text-decoration: none;
+}
+.active-link {
+  color: red;
 }
 </style>

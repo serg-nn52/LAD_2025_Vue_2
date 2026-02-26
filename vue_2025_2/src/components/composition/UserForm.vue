@@ -10,10 +10,12 @@
 </template>
 
 <script setup lang="ts">
+import { useLocalStorage } from '@/composables/useLocalStorage';
 import { onBeforeUnmount, onMounted, onUpdated, ref, watch } from 'vue';
 
 const name = ref('Ivan');
-const age = ref('18');
+// const age = ref('18');
+const age = useLocalStorage('age', '18')
 const isSendFormButtonDisable = ref(false);
 
 const inputOther = ref<HTMLInputElement | null>(null);
