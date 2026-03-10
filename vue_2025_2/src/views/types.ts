@@ -4,3 +4,10 @@ export interface IPost {
   title: string;
   userId: number;
 }
+
+export interface IUser {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}

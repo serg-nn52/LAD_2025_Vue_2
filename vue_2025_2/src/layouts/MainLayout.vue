@@ -5,6 +5,7 @@
       <router-link active-class="active-link" class="nav-link" :to="{name: 'home'}">Main</router-link>
       <router-link active-class="active-link" class="nav-link" :to="{name: 'options'}">Options</router-link>
       <router-link active-class="active-link" class="nav-link" :to="{name: 'posts'}">Posts</router-link>
+       <router-link active-class="active-link" class="nav-link" :to="{name: 'users'}">Users</router-link>
     </nav>
     <div class="content">
       <slot />

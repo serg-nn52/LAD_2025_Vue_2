@@ -9,6 +9,7 @@ import { RouterView, useRoute } from 'vue-router';
 // import MainLayout from './layouts/MainLayout.vue';
 
 const route = useRoute();
+console.log('env', import.meta.env);
 </script>
 
 <style scoped>

@@ -1,4 +1,7 @@
 <template>
+  <h2>Работа со стором</h2>
+  <div>Счетчик в сторе: {{ count }}</div>
+  <div>Двойной счетчик в сторе: {{ doubleCount }}</div>
   <hr :style="{ marginTop: '10px' }" />
   <div>Name: {{ user.name }}</div>
   <div>Age: {{ user.age }}</div>
@@ -11,8 +14,14 @@
 </template>
 
 <script setup lang="ts">
+import { useCounterStore } from '@/stores/counter';
 import { truncateString } from '@/utils/truncateString';
+import { storeToRefs } from 'pinia';
 import { reactive, ref, watch } from 'vue';
+
+const counterStore = useCounterStore();
+
+const { count, doubleCount } = storeToRefs(counterStore);
 
 interface IUser {
   name: string;

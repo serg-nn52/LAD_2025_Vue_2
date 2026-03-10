@@ -6,14 +6,26 @@
     <button class="button" :class="styles.button" @click="count++">Increment++</button>
     <button class="button" :class="styles.button" @click="decrement">Decrement--</button>
     <button class="button" :class="styles.button" @click="reset">Reset</button>
+    <hr />
+    <h2>Работа со стором</h2>
+    <div>Счетчик в сторе: {{ newCount }}</div>
+    <div>Двойной счетчик в сторе: {{ newDoubleCount }}</div>
+    <button class="button" :class="styles.button" @click="newIncrement">Increment++</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, useCssModule, watch, type CSSProperties } from 'vue';
 import type { IClickCounterEmits, IClickCounterProps } from './types';
+import { useCounterStore } from '@/stores/counter';
+import { storeToRefs } from 'pinia';
 
 const styles = useCssModule();
+
+const counterStore = useCounterStore();
+
+const { increment: newIncrement } = counterStore;
+const { count: newCount, doubleCount: newDoubleCount } = storeToRefs(counterStore);
 
 //required
 //const props = defineProps<IClickCounterProps>()
